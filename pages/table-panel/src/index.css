@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgba(30, 34, 43, 0.25);
+}
+
+
+body,
+#app-container {
+  overflow: hidden;
+}

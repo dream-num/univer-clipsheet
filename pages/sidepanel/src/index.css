@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app-container {
+    padding: 8px;
+    background-color: #EBF1FF;
+    height: 100vh;
+    overflow: hidden;
+    /* padding-top: 20px; */
+}

@@ -1,0 +1,3 @@
+[submodule "submodules/univer-clipsheet-core"]
+	path = submodules/univer-clipsheet-core
+	url = https://github.com/dream-num/univer-clipsheet-core.git

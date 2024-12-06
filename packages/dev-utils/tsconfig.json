@@ -1,0 +1,8 @@
+{
+    "extends": "@univer-clipsheet/tsconfig/utils",
+    "compilerOptions": {
+        "types": ["chrome"],
+        "outDir": "dist"
+    },
+    "include": ["index.ts", "lib"]
+}

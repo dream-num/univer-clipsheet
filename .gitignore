@@ -1,0 +1,15 @@
+# dependencies
+**/node_modules
+
+# testing
+**/coverage
+
+# build
+**/dist
+**/build
+
+# etc
+.DS_Store
+.idea
+**/.turbo
+

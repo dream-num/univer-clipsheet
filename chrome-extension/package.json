@@ -1,0 +1,39 @@
+{
+    "name": "chrome-extension",
+    "type": "module",
+    "version": "0.0.1",
+    "description": "chrome extension",
+    "scripts": {
+        "clean": "rimraf ../../dist && rimraf .turbo",
+        "build": "tsc --noEmit && vite build",
+        "build:firefox": "tsc --noEmit && cross-env __FIREFOX__=true vite build",
+        "build:watch": "cross-env __DEV__=true vite build -w --mode development",
+        "build:firefox:watch": "cross-env __DEV__=true __FIREFOX__=true vite build -w --mode development",
+        "dev": "pnpm build:watch",
+        "dev:firefox": "pnpm build:firefox:watch",
+        "test": "vitest run",
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@wendellhu/redi": "0.16.1",
+        "dayjs": "1.11.11",
+        "pako": "^2.1.0",
+        "webextension-polyfill": "^0.11.0"
+    },
+    "devDependencies": {
+        "@laynezh/vite-plugin-lib-assets": "^0.5.21",
+        "@types/pako": "^2.0.3",
+        "@types/ws": "^8.5.10",
+        "@univer-clipsheet-core/scraper": "workspace:*",
+        "@univer-clipsheet-core/shared": "workspace:*",
+        "@univer-clipsheet-core/table": "workspace:*",
+        "@univer-clipsheet-core/workflow": "workspace:*",
+        "@univer-clipsheet/dev-utils": "workspace:*",
+        "@univer-clipsheet/hmr": "workspace:*",
+        "@univer-clipsheet/shared": "workspace:*",
+        "@univer-clipsheet/tsconfig": "workspace:*",
+        "magic-string": "^0.30.10",
+        "ts-loader": "^9.5.1",
+        "vitest": "^1.6.0"
+    }
+}

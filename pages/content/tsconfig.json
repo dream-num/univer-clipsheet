@@ -1,0 +1,20 @@
+{
+    "extends": "@univer-clipsheet/tsconfig/base",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@lib/*": [
+                "lib/*"
+            ],
+            "@e2e/*": [
+                "e2e/*"
+            ]
+        },
+        "types": [
+            "chrome"
+        ]
+    },
+    "include": [
+        "lib"
+    ]
+}

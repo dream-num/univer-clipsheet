@@ -1,0 +1,12 @@
+{
+    "extends": "@univer-clipsheet/tsconfig/app.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@root/*": ["./*"],
+            "@lib/*": ["lib/*"]
+        },
+        "types": ["vite/client", "node", "chrome"]
+    },
+    "include": ["src", "utils", "vite.config.ts", "node_modules/@types"]
+}

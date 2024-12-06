@@ -1,0 +1,22 @@
+{
+    "name": "@univer-clipsheet/dev-utils",
+    "version": "0.0.1",
+    "private": true,
+    "description": "chrome extension dev utils",
+    "sideEffects": false,
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/**"
+    ],
+    "scripts": {
+        "clean": "rimraf ./dist && rimraf ./build && rimraf .turbo",
+        "build": "pnpm run clean && tsc",
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@univer-clipsheet/tsconfig": "workspace:*"
+    }
+}

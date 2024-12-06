@@ -1,0 +1,34 @@
+{
+    "name": "@univer-clipsheet/sidepanel",
+    "version": "0.0.1",
+    "private": true,
+    "description": "chrome extension sidepanel",
+    "sideEffects": true,
+    "files": [
+        "dist/**"
+    ],
+    "scripts": {
+        "clean": "rimraf ./dist && rimraf .turbo",
+        "build": "pnpm run clean && tsc --noEmit && vite build",
+        "build:watch": "cross-env __DEV__=true vite build -w --mode development",
+        "dev": "pnpm build:watch",
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+
+        "@univer-clipsheet-core/shared": "workspace:*",
+        "@univer-clipsheet-core/table": "workspace:*",
+        "@univer-clipsheet-core/ui": "workspace:*",
+        "@univer-clipsheet/shared": "workspace:*",
+        "dayjs": "1.11.11",
+        "rc-dialog": "9.6.0",
+        "rc-select": "14.15.2",
+        "rc-table": "7.47.5",
+        "rc-tooltip": "6.2.0"
+    },
+    "devDependencies": {
+        "@univer-clipsheet/hmr": "workspace:*",
+        "@univer-clipsheet/tailwindcss-config": "workspace:*",
+        "@univer-clipsheet/tsconfig": "workspace:*"
+    }
+}

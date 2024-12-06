@@ -1,0 +1,10 @@
+{
+    "extensionDescription": {
+        "description": "Extension description",
+        "message": "Use AI to help you extract all table data from public web pages and generate sheets."
+    },
+    "extensionName": {
+        "description": "Extension name",
+        "message": "Univer ClipSheet - An AI-driven one-click solution for web scraping"
+    }
+}

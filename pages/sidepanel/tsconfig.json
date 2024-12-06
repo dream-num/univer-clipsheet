@@ -1,0 +1,18 @@
+{
+    "extends": "@univer-clipsheet/tsconfig/base",
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "baseUrl": ".",
+        "paths": {
+            "@src/*": [
+                "src/*"
+            ]
+        },
+        "types": [
+            "chrome"
+        ]
+    },
+    "include": [
+        "src"
+    ]
+}

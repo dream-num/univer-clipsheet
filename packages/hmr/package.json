@@ -1,0 +1,32 @@
+{
+    "name": "@univer-clipsheet/hmr",
+    "version": "0.0.1",
+    "private": true,
+    "description": "chrome extension hot module reload or refresh",
+    "sideEffects": true,
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/**"
+    ],
+    "scripts": {
+        "clean": "rimraf ./dist && rimraf ./build && rimraf .turbo",
+        "build:tsc": "tsc -b tsconfig.build.json",
+        "build:rollup": "rollup --config rollup.config.mjs",
+        "build": "pnpm run build:tsc && pnpm run build:rollup",
+        "dev-server": "node dist/lib/initReloadServer.js",
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "ws": "8.17.0"
+    },
+    "devDependencies": {
+        "@rollup/plugin-sucrase": "^5.0.2",
+        "@types/ws": "^8.5.10",
+        "@univer-clipsheet/tsconfig": "workspace:*",
+        "esm": "^3.2.25",
+        "rollup": "^4.17.2",
+        "ts-node": "^10.9.2"
+    }
+}

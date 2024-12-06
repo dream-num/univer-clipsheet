@@ -1,0 +1,10 @@
+packages:
+    - chrome-extension
+    - pages/content
+    - pages/popup
+    - pages/ajax-interceptor
+    - pages/sidepanel
+    - pages/workflow-panel
+    - pages/table-panel
+    - 'packages/*'
+    - 'submodules/univer-clipsheet-core/packages/**'

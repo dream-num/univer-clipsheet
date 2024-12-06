@@ -1,0 +1,24 @@
+{
+    "name": "@univer-clipsheet/ajax-interceptor",
+    "version": "0.0.1",
+    "private": true,
+    "description": "chrome extension ajax interceptor",
+    "sideEffects": true,
+    "files": [
+        "dist/**"
+    ],
+    "scripts": {
+        "clean": "rimraf ./dist && rimraf .turbo",
+        "build": "pnpm run clean && tsc --noEmit && vite build",
+        "build:watch": "cross-env __DEV__=true vite build -w --mode development",
+        "dev": "pnpm build:watch",
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@univer-clipsheet-core/ajax-intercept": "workspace:*"
+    },
+    "devDependencies": {
+        "@univer-clipsheet/hmr": "workspace:*",
+        "@univer-clipsheet/tsconfig": "workspace:*"
+    }
+}

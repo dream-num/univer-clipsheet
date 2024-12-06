@@ -1,0 +1,18 @@
+{
+    "extends": "@univer-clipsheet/tsconfig/utils",
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "baseUrl": ".",
+        "paths": {
+            "@lib/*": [
+                "lib/*"
+            ]
+        },
+        "types": ["chrome"],
+        "outDir": "dist"
+    },
+    "include": [
+        "index.ts",
+        "lib"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "name": "@univer-clipsheet/tailwindcss-config",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Tailwind CSS configuration for boilerplate",
+    "main": "./tailwind.config.js"
+}

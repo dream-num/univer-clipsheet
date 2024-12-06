@@ -1,0 +1,36 @@
+{
+    "name": "@univer-clipsheet/table-panel",
+    "version": "0.0.1",
+    "private": true,
+    "description": "clipsheet table-panel",
+    "sideEffects": true,
+    "files": [
+        "dist/**"
+    ],
+    "scripts": {
+        "clean": "rimraf ./dist && rimraf .turbo",
+        "build": "pnpm run clean && tsc --noEmit && vite build",
+        "build:watch": "cross-env __DEV__=true vite build -w --mode development",
+        "dev": "pnpm build:watch",
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@json2csv/plainjs": "^7.0.6",
+        "@univer-clipsheet-core/locale": "workspace:*",
+        "@univer-clipsheet-core/shared": "workspace:*",
+        "@univer-clipsheet-core/table": "workspace:*",
+        "@univer-clipsheet-core/ui": "workspace:*",
+        "@univer-clipsheet/shared": "workspace:*",
+        "dayjs": "1.11.11",
+        "file-saver": "2.0.5",
+        "rc-select": "14.15.2",
+        "rc-switch": "4.1.0",
+        "rc-tooltip": "6.2.1"
+    },
+    "devDependencies": {
+        "@types/file-saver": "2.0.7",
+        "@univer-clipsheet/hmr": "workspace:*",
+        "@univer-clipsheet/tailwindcss-config": "workspace:*",
+        "@univer-clipsheet/tsconfig": "workspace:*"
+    }
+}
