@@ -60,6 +60,6 @@
         "pre-commit": "pnpm lint-staged"
     },
     "lint-staged": {
-        "!(submodules/univer-scraper-shared/**/)*": "eslint --fix"
+        "!(submodules/univer-clipsheet-core/**/)*": "eslint --fix"
     }
 }

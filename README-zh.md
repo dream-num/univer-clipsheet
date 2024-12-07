@@ -4,6 +4,8 @@
 
 [English](./README.md) | **简体中文**
 
+[Official Site](https://univer.ai/zh-CN/clip-sheet)
+
 ## 核心功能
 
 ### 1. 网页爬取
@@ -48,7 +50,7 @@
 ## 核心代码仓库
 
 **Univer Clipsheet** 的核心功能在另一个仓库中实现。
-欲了解更多详情并访问核心代码，请访问：
+了解更多详情请访问：
 **[univer-clipsheet-core](https://github.com/dream-num/univer-clipsheet-core)**。
 
 ---

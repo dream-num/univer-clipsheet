@@ -1,8 +1,10 @@
 # Univer Clipsheet
 
-**Univer Clipsheet** is a robust Chrome extension for web scraping and data automation. It simplifies the process of extracting, organizing, and managing web data with powerful scraping capabilities and workflow integration.
+**Univer Clipsheet** is a powerful Chrome extension for web scraping and data automation. It simplifies the process of extracting, organizing, and managing web data with powerful scraping capabilities and workflow integration.
 
 **English** | [简体中文](./README-zh.md)
+
+[Official Site](https://univer.ai/en-US/clip-sheet)
 
 ## Key Features
 
@@ -73,7 +75,7 @@ To use **Univer Clipsheet**, ensure you have the following installed:
    ```bash
    cd univer-clipsheet
    git submodule update --init
-   npm install
+   pnpm install
    ```
 
 ### Getting Started
@@ -129,7 +131,9 @@ You can submit [issues or feature requests](https://github.com/dream-num/univer-
 
 ## License
 
-This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for more details.
+Copyright © 2021-2024 DreamNum Co,Ltd. All Rights Reserved.
+
+Licensed under the [Apache-2.0](./LICENSE) license.
 
 ---
 

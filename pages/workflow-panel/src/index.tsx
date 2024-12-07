@@ -5,13 +5,8 @@ import { WorkflowPanel, WorkflowPanelViewService } from '@univer-clipsheet-core/
 import { useMemo } from 'react';
 
 function MyWorkflowPanel() {
-    // const [rect, setRect] = useStorageValue<Rect>(UIStorageKeyEnum.IframePanelRect, {
-    //     width: 0,
-    //     height: 0,
-    // });
     const service = useMemo(() => {
         const workflowPanelViewService = new WorkflowPanelViewService();
-        // workflowPanelViewService.setEmailNotificationTriggerControl(true);
 
         return workflowPanelViewService;
     }, []);

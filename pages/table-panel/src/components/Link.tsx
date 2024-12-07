@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import type { PropsWithChildren } from 'react';
 import { useCallback } from 'react';
+import './link.css';
+import { Tooltip } from '@univer-clipsheet-core/ui';
 
 export interface LinkProps {
     href: string;
@@ -18,5 +20,18 @@ export const Link = (props: PropsWithChildren<LinkProps>) => {
         }
     }, [href]);
 
-    return <a className={clsx('ml-1.5 text-blue-500 hover:underline', className)} href={href} onClick={linkClick}>{children}</a>;
+    return (
+        <Tooltip
+            align={{
+                autoArrow: false,
+            }}
+            overlayClassName="max-w-[500px]"
+            placement="top"
+            overlay={<span className="break-all">{href}</span>}
+        >
+            <div>
+                <a className={clsx('ml-1.5 text-blue-500 hover:underline text-clamp', className)} href={href} onClick={linkClick}>{children}</a>
+            </div>
+        </Tooltip>
+    );
 };

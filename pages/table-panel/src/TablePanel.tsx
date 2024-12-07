@@ -50,10 +50,10 @@ export const TablePanel = () => {
     };
 
     return (
-        <div ref={containerRef} className="w-[744px] rounded-2xl p-5 bg-white">
+        <div ref={containerRef} className="w-[800px] rounded-2xl p-5 bg-white">
             <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                    <h1 className="text-base">{currentTableRecord?.title}</h1>
+                    <h1 className="text-lg">{currentTableRecord?.title}</h1>
                     <Link href={currentTableRecord?.sourceUrl ?? ''}>{t('OriginalLink')}</Link>
                 </div>
 
@@ -61,19 +61,14 @@ export const TablePanel = () => {
                     <CloseGraySvg />
                 </button>
             </div>
-            <div className="text-right mt-25">
-                <button className={clsx('py-1.5 px-3 text-white rounded-3xl', linearGradientBackground)} onClick={exportAsCSV}>Export as CSV</button>
-            </div>
-            <div className="flex items-center justify-between">
-                <ul className="flex mt-2 grow">
+
+            <div className="flex items-center justify-between mt-3">
+                <ul className="flex grow">
                     {tableRecordSheets.map((sheet, index) => {
                         return (
                             <li
                                 key={index}
-                                className={clsx('p-2 border border-solid border-gray-200 !border-b-0 hover:bg-slate-100 cursor-pointer rounded !rounded-b-none', {
-                                    'bg-[#EBF1FF]': sheetIndex === index,
-
-                                })}
+                                className={clsx('p-2 text-sm hover:bg-slate-100 cursor-pointer rounded')}
                                 onClick={() => setSheetIndex(index)}
                             >
                                 {`${t('Table')} ${index + 1}`}
@@ -81,18 +76,22 @@ export const TablePanel = () => {
                         );
                     })}
                 </ul>
-                <div className="text-sm">
-                    <span>
-                        {t('Table')}
-                        {' '}
-                        {t('Rows')}
-                        :
-                    </span>
-                    <span className="text-blue-500 ml-1">{currentSheet?.rows.length ?? 0}</span>
-                </div>
+
             </div>
 
             {currentSheet && <div><InitialSheetView sheet={currentSheet} /></div> }
+
+            <footer className="flex items-center justify-between mt-3">
+                <div className="text-sm">
+                    <span>
+                        {t('RowsScraped') }
+                        {' '}
+                    </span>
+                    <span className="text-[#274FEE]">{currentSheet?.rows.length ?? 0}</span>
+                </div>
+
+                <button className={clsx('py-1.5 px-3 text-white rounded-3xl', linearGradientBackground)} onClick={exportAsCSV}>Export as CSV</button>
+            </footer>
         </div>
     );
 };

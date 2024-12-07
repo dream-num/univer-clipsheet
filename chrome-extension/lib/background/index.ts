@@ -10,7 +10,6 @@ import { filterRowsByRemoveDuplicateRule } from './helper';
 
 chrome.runtime.onInstalled.addListener((detail) => {
     if (detail.reason === 'install') {
-        // setStorage(StorageKeys.ShowExpiredAlert, true);
         chrome.tabs.create({ url: 'https://univer.ai/clipsheet' });
     }
 });

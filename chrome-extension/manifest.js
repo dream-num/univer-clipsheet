@@ -17,13 +17,13 @@ const manifest = {
     version: packageJson.version,
     description: '__MSG_extensionDescription__',
     permissions: ['storage', 'tabs', 'unlimitedStorage', 'contextMenus', 'sidePanel', 'webNavigation'],
-    // host_permissions: ['<all_urls>'],
+
     host_permissions: ['http://*/*', 'https://*/*'],
     side_panel: {
         default_path: 'sidepanel/index.html',
     },
     // To open the option page introduce user how best practice for this extension
-    // options_page: 'options/index.html',
+
     background: {
         service_worker: 'background.iife.js',
         type: 'module',
@@ -41,16 +41,8 @@ const manifest = {
             js: ['content/index.iife.js'],
             run_at: 'document_start',
         },
-        // {
-        //   matches: ['http://*/*', 'https://*/*'],
-        //   js: ['content-ui/index.iife.js'],
-        // },
-        {
-            matches: ['http://*/*', 'https://*/*'],
-            css: ['content.css'], // public folder
-        },
     ],
-    // devtools_page: 'devtools/index.html',
+
     web_accessible_resources: [
         {
             resources: [

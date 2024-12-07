@@ -20,14 +20,23 @@ export const InitialSheetView = (props: InitialSheetViewProps) => {
         const _columns: Array<NonNullable<TableProps['columns']>[number]> = sheet.columnName.map((name, columnIndex) => {
             return {
                 title: <div className="px-2">{name}</div>,
-                className: 'border-r',
+                className: 'border-r !border-[#cdd0d8]',
                 width: 200,
                 key: name,
                 render: (value, row: IInitialSheet['rows'][number]) => {
                     const cell = row.cells[columnIndex];
-                    const textContent = cell.type === Sheet_Cell_Type_Enum.URL ? <Link href={cell.url}>{cell.url}</Link> : cell.text;
+                    if (!cell) {
+                        return;
+                    }
 
-                    return <div className="text-sm px-2">{textContent}</div>;
+                    // Render cell content by different types
+                    const textContent = cell.type === Sheet_Cell_Type_Enum.URL
+                        ? <Link href={cell.url}>{cell.url}</Link>
+                        : cell.type === Sheet_Cell_Type_Enum.IMAGE
+                            ? <img src={cell.url} alt={cell.text} className="w-20 h-20 object-contain" />
+                            : cell.text;
+
+                    return <div className="text-sm text-gray-900 px-2 py-2 font-normal">{textContent}</div>;
                 },
             };
         });
@@ -55,9 +64,10 @@ export const InitialSheetView = (props: InitialSheetViewProps) => {
 
     return (
         <Table
+            rounded
             onHeaderRow={onHeaderRow}
             scroll={{ x: 400, y: 400 }}
-            className={clsx('!border !border-solid !border-[#EEEFF1]', className)}
+            className={clsx('!border !border-solid !border-[#cdd0d8] rounded-md', className)}
             rowKey={rowKey}
             columns={columns}
             data={sheet.rows}

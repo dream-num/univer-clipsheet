@@ -1,11 +1,12 @@
 import { Injector } from '@wendellhu/redi';
-import type { IMessage } from '@univer-clipsheet-core/shared';
-import { ClipsheetMessageTypeEnum, IframeDialogKeyEnum, listenPingSignal, PingSignalKeyEnum } from '@univer-clipsheet-core/shared';
+import type { IMessage, SetStorageMessage } from '@univer-clipsheet-core/shared';
+import { ClipsheetMessageTypeEnum, IframeDialogKeyEnum, listenPingSignal, PingSignalKeyEnum, requestDataSource, sendSetIframeDialogKeyMessage } from '@univer-clipsheet-core/shared';
 import { ClientController, ClientViewService, CoverService, DetectTablesService, ElementInspectService, IframePanelShadowComponent, RemountObserver, ScraperClientChannelService, TableScrapingShadowComponent } from '@univer-clipsheet-core/ui';
 // import type { GetIntelligenceColumnMessage, MessageItem, PushIntelligenceColumnMessage } from '@univer-clipsheet/shared';
 // import { DataSourceKeys, joinUnitUrl, Message, MsgType, StorageKeys } from '@univer-clipsheet/shared';
 import { startAjaxIntercept } from '@univer-clipsheet-core/ajax-intercept';
-import { ajaxJsonToTable } from '@univer-clipsheet-core/table';
+import type { IGetTableRecordsParams, ITableRecordsResponse } from '@univer-clipsheet-core/table';
+import { ajaxJsonToTable, TableDataSourceKeyEnum, TableStorageKeyEnum } from '@univer-clipsheet-core/table';
 // import { fieldExtractionEvent } from './tools/field-extraction-events';
 
 startAjaxIntercept(chrome.runtime.getURL('ajax-interceptor/index.iife.js'), (data) => {
@@ -254,7 +255,29 @@ injector.get(DetectTablesService).listenMessage();
 injector.get(ClientController).listenMessage();
 injector.get(ScraperClientChannelService).listenMessage();
 
-// const clientViewService = injector.get(ClientViewService);
+const clientViewService = injector.get(ClientViewService);
+
+clientViewService.onViewScrapedDataClick(async (tableId) => {
+    injector.get(TableScrapingShadowComponent).deactivate();
+
+    const res = await requestDataSource<ITableRecordsResponse, IGetTableRecordsParams>(TableDataSourceKeyEnum.TableRecords, {
+        page: 1,
+        pageSize: 1,
+        ids: [tableId],
+    }, (msg) => msg.type === ClipsheetMessageTypeEnum.PushDataSource && msg.payload.key === TableDataSourceKeyEnum.TableRecords);
+    const tableRecord = res.data[0];
+
+    const msg: SetStorageMessage = {
+        type: ClipsheetMessageTypeEnum.SetStorage,
+        payload: {
+            key: TableStorageKeyEnum.CurrentTableRecord,
+            value: tableRecord,
+        },
+    };
+
+    chrome.runtime.sendMessage(msg);
+    sendSetIframeDialogKeyMessage(IframeDialogKeyEnum.TablePanel);
+});
 
 // clientViewService.onCreateScraper(async (scraper, sheet) => {
 //     // set intelligence columns when creating a scraper

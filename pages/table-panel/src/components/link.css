@@ -1,0 +1,7 @@
+.text-clamp {
+  display: -webkit-box; /* 必须 */
+  -webkit-line-clamp: 4; /* 显示的行数 */
+  -webkit-box-orient: vertical; /* 必须 */
+  overflow: hidden; /* 必须 */
+  text-overflow: ellipsis; /* 可选 */
+}

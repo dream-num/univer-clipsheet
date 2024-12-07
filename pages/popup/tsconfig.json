@@ -13,6 +13,6 @@
         ]
     },
     "include": [
-        "src",
-        "../content/lib/tools/clipboard.ts"]
+        "src"
+    ]
 }
