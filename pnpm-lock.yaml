@@ -298,6 +298,55 @@ importers:
         specifier: workspace:*
         version: link:../../packages/tsconfig
 
+  pages/preview-table-panel:
+    dependencies:
+      '@json2csv/plainjs':
+        specifier: ^7.0.6
+        version: 7.0.6
+      '@univer-clipsheet-core/locale':
+        specifier: workspace:*
+        version: link:../../submodules/univer-clipsheet-core/packages/locale
+      '@univer-clipsheet-core/shared':
+        specifier: workspace:*
+        version: link:../../submodules/univer-clipsheet-core/packages/shared
+      '@univer-clipsheet-core/table':
+        specifier: workspace:*
+        version: link:../../submodules/univer-clipsheet-core/packages/table
+      '@univer-clipsheet-core/ui':
+        specifier: workspace:*
+        version: link:../../submodules/univer-clipsheet-core/packages/ui
+      '@univer-clipsheet/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      dayjs:
+        specifier: 1.11.11
+        version: 1.11.11
+      file-saver:
+        specifier: 2.0.5
+        version: 2.0.5
+      rc-select:
+        specifier: 14.15.2
+        version: 14.15.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      rc-switch:
+        specifier: 4.1.0
+        version: 4.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      rc-tooltip:
+        specifier: 6.2.1
+        version: 6.2.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+    devDependencies:
+      '@types/file-saver':
+        specifier: 2.0.7
+        version: 2.0.7
+      '@univer-clipsheet/hmr':
+        specifier: workspace:*
+        version: link:../../packages/hmr
+      '@univer-clipsheet/tailwindcss-config':
+        specifier: workspace:*
+        version: link:../../packages/tailwind-config
+      '@univer-clipsheet/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
+
   pages/sidepanel:
     dependencies:
       '@univer-clipsheet-core/shared':

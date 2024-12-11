@@ -46,8 +46,8 @@ const manifest = {
     web_accessible_resources: [
         {
             resources: [
-                'content/templates/*.html',
                 'table-panel/*.html',
+                'preview-table-panel/*.html',
                 'workflow-panel/*.html',
                 '*.js',
                 '*.css',

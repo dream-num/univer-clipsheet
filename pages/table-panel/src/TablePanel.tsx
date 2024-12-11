@@ -1,13 +1,11 @@
 import { t } from '@univer-clipsheet-core/locale';
-import { IframeDialogKeyEnum, sendSetIframeDialogKeyMessage } from '@univer-clipsheet-core/shared';
+import { IframeViewTypeEnum, sendSetIframeViewMessage } from '@univer-clipsheet-core/shared';
 import type { IInitialSheet, ITableRecord } from '@univer-clipsheet-core/table';
 import { getCellValue, TableStorageKeyEnum } from '@univer-clipsheet-core/table';
-import { CloseGraySvg, linearGradientBackground, useStorageValue, useSyncIframeRectEffect } from '@univer-clipsheet-core/ui';
+import { CloseGraySvg, InitialSheetView, linearGradientBackground, Link, useStorageValue, useSyncIframeRectEffect } from '@univer-clipsheet-core/ui';
 import clsx from 'clsx';
 import React, { useMemo } from 'react';
 import { saveAs } from 'file-saver';
-import { InitialSheetView } from './components/InitialSheetView';
-import { Link } from './components/Link';
 import { generateColumnNames } from './tools';
 
 export const TablePanel = () => {
@@ -49,15 +47,17 @@ export const TablePanel = () => {
         saveAs(blob, `${currentTableRecord?.title}.csv`);
     };
 
+    const tableScroll = useMemo(() => ({ x: 400, y: window.innerHeight - 214 }), []);
+
     return (
-        <div ref={containerRef} className="w-[800px] rounded-2xl p-5 bg-white">
+        <div ref={containerRef} className="rounded-2xl p-5 bg-white">
             <div className="flex items-center justify-between">
                 <div className="flex items-center">
                     <h1 className="text-lg">{currentTableRecord?.title}</h1>
                     <Link href={currentTableRecord?.sourceUrl ?? ''}>{t('OriginalLink')}</Link>
                 </div>
 
-                <button className={clsx('p-1 hover:bg-gray-100 rounded-sm')} onClick={() => sendSetIframeDialogKeyMessage(IframeDialogKeyEnum.None)}>
+                <button className={clsx('p-1 hover:bg-gray-100 rounded-sm')} onClick={() => sendSetIframeViewMessage(IframeViewTypeEnum.None)}>
                     <CloseGraySvg />
                 </button>
             </div>
@@ -79,7 +79,7 @@ export const TablePanel = () => {
 
             </div>
 
-            {currentSheet && <div><InitialSheetView sheet={currentSheet} /></div> }
+            {currentSheet && <div><InitialSheetView rounded sheet={currentSheet} scroll={tableScroll} /></div> }
 
             <footer className="flex items-center justify-between mt-3">
                 <div className="text-sm">

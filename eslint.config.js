@@ -97,7 +97,7 @@ const baseRules = {
 };
 
 const ignores = [
-    'submodules/univer-clipsheet-core/**/*',
+    'submodules/univer-clipsheet-core/*',
 ];
 
 export default antfu({

@@ -1,7 +1,7 @@
 import '@src/index.css';
 import { t } from '@univer-clipsheet-core/locale';
 import type { SetStorageMessage } from '@univer-clipsheet-core/shared';
-import { ClipsheetMessageTypeEnum, closePopup, IframeDialogKeyEnum, sendSetIframeDialogKeyMessage } from '@univer-clipsheet-core/shared';
+import { ClipsheetMessageTypeEnum, closePopup, IframeViewTypeEnum, sendSetIframeViewMessage } from '@univer-clipsheet-core/shared';
 import { deleteTaskRecord, TableStorageKeyEnum, triggerRecordTypes } from '@univer-clipsheet-core/table';
 import type { DropdownMenuItem } from '@univer-clipsheet-core/ui';
 import { getWorkflowColumnsByTable, openWorkflowDialog, Popup, PopupViewService } from '@univer-clipsheet-core/ui';
@@ -39,7 +39,7 @@ export function MyPopup() {
                 },
             };
 
-            sendSetIframeDialogKeyMessage(IframeDialogKeyEnum.TablePanel);
+            sendSetIframeViewMessage(IframeViewTypeEnum.TablePanel);
 
             chrome.runtime.sendMessage(msg2);
 

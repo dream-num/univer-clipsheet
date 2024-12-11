@@ -6,5 +6,6 @@ packages:
     - pages/sidepanel
     - pages/workflow-panel
     - pages/table-panel
+    - pages/preview-table-panel
     - 'packages/*'
     - 'submodules/univer-clipsheet-core/packages/**'

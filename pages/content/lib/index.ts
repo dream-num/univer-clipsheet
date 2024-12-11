@@ -1,7 +1,7 @@
 import { Injector } from '@wendellhu/redi';
 import type { IMessage, SetStorageMessage } from '@univer-clipsheet-core/shared';
-import { ClipsheetMessageTypeEnum, IframeDialogKeyEnum, listenPingSignal, PingSignalKeyEnum, requestDataSource, sendSetIframeDialogKeyMessage } from '@univer-clipsheet-core/shared';
-import { ClientController, ClientViewService, CoverService, DetectTablesService, ElementInspectService, IframePanelShadowComponent, RemountObserver, ScraperClientChannelService, TableScrapingShadowComponent } from '@univer-clipsheet-core/ui';
+import { ClipsheetMessageTypeEnum, IframeViewTypeEnum, listenPingSignal, PingSignalKeyEnum, requestDataSource, sendSetIframeViewMessage } from '@univer-clipsheet-core/shared';
+import { ClientController, ClientViewService, CoverService, DetectTablesService, ElementInspectService, IframeViewController, RemountObserver, ScraperClientChannelService, TableScrapingShadowComponent } from '@univer-clipsheet-core/ui';
 // import type { GetIntelligenceColumnMessage, MessageItem, PushIntelligenceColumnMessage } from '@univer-clipsheet/shared';
 // import { DataSourceKeys, joinUnitUrl, Message, MsgType, StorageKeys } from '@univer-clipsheet/shared';
 import { startAjaxIntercept } from '@univer-clipsheet-core/ajax-intercept';
@@ -235,7 +235,7 @@ window.addEventListener('load', () => {
 const injector = new Injector([
     [ElementInspectService],
     [TableScrapingShadowComponent],
-    [IframePanelShadowComponent],
+    [IframeViewController],
     [CoverService],
     [DetectTablesService],
     [RemountObserver],
@@ -244,10 +244,11 @@ const injector = new Injector([
     [ClientViewService],
 ]);
 
-const iframeShadowComponent = injector.get(IframePanelShadowComponent);
+const iframeViewController = injector.get(IframeViewController);
 
-iframeShadowComponent.addIframeSrc(IframeDialogKeyEnum.WorkflowPanel, chrome.runtime.getURL('workflow-panel/index.html'));
-iframeShadowComponent.addIframeSrc(IframeDialogKeyEnum.TablePanel, chrome.runtime.getURL('table-panel/index.html'));
+iframeViewController.registerIframeView(IframeViewTypeEnum.WorkflowPanel, chrome.runtime.getURL('workflow-panel/index.html'));
+iframeViewController.registerIframeView(IframeViewTypeEnum.TablePanel, chrome.runtime.getURL('table-panel/index.html'));
+iframeViewController.registerIframeView(IframeViewTypeEnum.PreviewTablePanel, chrome.runtime.getURL('preview-table-panel/index.html'));
 
 injector.get(ElementInspectService).listenMessage();
 injector.get(CoverService).listenMessage();
@@ -276,7 +277,7 @@ clientViewService.onViewScrapedDataClick(async (tableId) => {
     };
 
     chrome.runtime.sendMessage(msg);
-    sendSetIframeDialogKeyMessage(IframeDialogKeyEnum.TablePanel);
+    sendSetIframeViewMessage(IframeViewTypeEnum.TablePanel);
 });
 
 // clientViewService.onCreateScraper(async (scraper, sheet) => {
@@ -343,7 +344,7 @@ listenPingSignal(PingSignalKeyEnum.PopupShowed, () => {
 // chrome.runtime.onMessage.addListener(async (msg: MessageItem, sender) => {
 //     const { type } = msg;
 //     if (type === MsgType.LogOut) {
-//         injector.get(IframePanelShadowComponent).deactivate();
+//         injector.get(IframeViewController).deactivate();
 //         injector.get(TableScrapingShadowComponent).deactivate();
 //         injector.get(ElementInspectService).shadowComponent.deactivate();
 //         injector.get(CoverService).removeAllCovers();
