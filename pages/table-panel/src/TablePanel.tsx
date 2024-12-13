@@ -6,7 +6,6 @@ import { CloseGraySvg, InitialSheetView, linearGradientBackground, Link, useStor
 import clsx from 'clsx';
 import React, { useMemo } from 'react';
 import { saveAs } from 'file-saver';
-import { generateColumnNames } from './tools';
 
 export const TablePanel = () => {
     const [currentTableRecord] = useStorageValue<ITableRecord | null>(TableStorageKeyEnum.CurrentTableRecord, null);
@@ -16,18 +15,7 @@ export const TablePanel = () => {
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     const [sheetIndex, setSheetIndex] = React.useState(0);
-
-    const currentSheet = useMemo(() => {
-        const sheet = tableRecordSheets[sheetIndex];
-        if (!sheet) {
-            return null;
-        }
-
-        return {
-            ...sheet,
-            columnName: generateColumnNames(sheet),
-        };
-    }, [tableRecordSheets, sheetIndex]);
+    const currentSheet = tableRecordSheets[sheetIndex];
 
     useSyncIframeRectEffect(containerRef);
 
