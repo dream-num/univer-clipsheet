@@ -1,5 +1,5 @@
 import '@src/index.css';
-import { isZhCN, t } from '@univer-clipsheet-core/locale';
+import { t } from '@univer-clipsheet-core/locale';
 import type { SetStorageMessage } from '@univer-clipsheet-core/shared';
 import { ClipsheetMessageTypeEnum, closePopup, IframeViewTypeEnum, sendSetIframeViewMessage } from '@univer-clipsheet-core/shared';
 import { deleteTaskRecord, TableStorageKeyEnum, triggerRecordTypes } from '@univer-clipsheet-core/table';
@@ -10,10 +10,10 @@ import { useEffect, useMemo } from 'react';
 import clsx from 'clsx';
 import {
     DiscordSvg,
-    GiteeSvg,
+    // GiteeSvg,
     GithubSvg,
     LinkSvg,
-    WeChatSvg,
+    // WeChatSvg,
 } from './icons';
 
 enum MoreMenuKey {
@@ -84,52 +84,52 @@ export function MyPopup() {
     }, [service]);
 
     const contactMenus: DropdownMenuItem[] = useMemo(() => {
-        const isZh = isZhCN();
+        // const isZh = isZhCN();
 
-        if (isZh) {
-            return [
-                {
-                    key: ContactMenuKey.WeCom,
-                    text: (
-                        <div className="flex items-center">
-                            <WeChatSvg />
-                            <span className="ml-1">微信</span>
-                        </div>
-                    ),
-                },
-                {
-                    key: ContactMenuKey.Gitee,
-                    text: (
-                        <div className="flex items-center">
-                            <GiteeSvg />
-                            <span className="ml-1">Gitee</span>
-                        </div>
-                    ),
-                },
-            ];
-        } else {
-            return [
-                {
-                    key: ContactMenuKey.Discord,
+        // if (isZh) {
+        //     return [
+        //         {
+        //             key: ContactMenuKey.WeCom,
+        //             text: (
+        //                 <div className="flex items-center">
+        //                     <WeChatSvg />
+        //                     <span className="ml-1">微信</span>
+        //                 </div>
+        //             ),
+        //         },
+        //         {
+        //             key: ContactMenuKey.Gitee,
+        //             text: (
+        //                 <div className="flex items-center">
+        //                     <GiteeSvg />
+        //                     <span className="ml-1">Gitee</span>
+        //                 </div>
+        //             ),
+        //         },
+        //     ];
+        // } else {
+        return [
+            {
+                key: ContactMenuKey.Discord,
 
-                    text: (
-                        <div className="flex items-center">
-                            <DiscordSvg className="text-gray-900" />
-                            <span className="ml-1">Discord</span>
-                        </div>
-                    ),
-                },
-                {
-                    key: ContactMenuKey.Github,
-                    text: (
-                        <div className="flex items-center">
-                            <GithubSvg className="text-gray-900 opacity-1 w-4 h-4" />
-                            <span className="ml-1">Github</span>
-                        </div>
-                    ),
-                },
-            ];
-        }
+                text: (
+                    <div className="flex items-center">
+                        <DiscordSvg className="text-gray-900" />
+                        <span className="ml-1">Discord</span>
+                    </div>
+                ),
+            },
+            {
+                key: ContactMenuKey.Github,
+                text: (
+                    <div className="flex items-center">
+                        <GithubSvg className="text-gray-900 opacity-1 w-4 h-4" />
+                        <span className="ml-1">Github</span>
+                    </div>
+                ),
+            },
+        ];
+        // }
     }, []);
 
     const handleContactMenuChange = (key: string) => {
@@ -142,12 +142,12 @@ export function MyPopup() {
                 chrome.tabs.create({ url: 'https://github.com/dream-num/univer-clipsheet' });
                 break;
             }
-            case ContactMenuKey.Gitee: {
-                break;
-            }
-            case ContactMenuKey.WeCom: {
-                break;
-            }
+            // case ContactMenuKey.Gitee: {
+            //     break;
+            // }
+            // case ContactMenuKey.WeCom: {
+            //     break;
+            // }
         }
     };
 

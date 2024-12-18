@@ -1,18 +1,13 @@
 
 import { DrillDownService, IScraperDataSource, LocaleScraperDataSource, ScraperService } from '@univer-clipsheet-core/scraper';
-import { getStorage, ISidePanelService, setAndPushStorage, SidePanelService, StorageService } from '@univer-clipsheet-core/shared';
+import { getStorage, ISidePanelService, setAndPushStorage, SidePanelService, StorageService, WindowService } from '@univer-clipsheet-core/shared';
 import type { IInitialSheet } from '@univer-clipsheet-core/table';
 import { createEmptyInitialSheet, ITableDataSource, LocalTableDataSource, TableRecordTypeEnum, TableService, TableStorageKeyEnum } from '@univer-clipsheet-core/table';
 import { IWorkflowDataSource, LocaleWorkflowDataSource, WorkflowService } from '@univer-clipsheet-core/workflow';
 import { Injector } from '@wendellhu/redi';
 import 'webextension-polyfill';
 import { filterRowsByRemoveDuplicateRule } from './helper';
-
-chrome.runtime.onInstalled.addListener((detail) => {
-    if (detail.reason === 'install') {
-        chrome.tabs.create({ url: 'https://univer.ai/clipsheet' });
-    }
-});
+import { setTemplate } from './set-templates';
 
 const injector = new Injector([
     [TableService],
@@ -20,6 +15,7 @@ const injector = new Injector([
     [ScraperService],
     [DrillDownService],
     [WorkflowService],
+    [WindowService],
     [ISidePanelService, { useFactory: () => new SidePanelService('sidepanel/index.html') }],
     [ITableDataSource, { useClass: LocalTableDataSource }],
     [IScraperDataSource, { useClass: LocaleScraperDataSource }],
@@ -28,14 +24,16 @@ const injector = new Injector([
 
 const tableService = injector.get(TableService);
 const workflowService = injector.get(WorkflowService);
+const windowService = injector.get(WindowService);
 
 tableService.listenMessage();
 workflowService.listenMessage();
+windowService.listenMessage();
+windowService.setWindowTemplatePath(chrome.runtime.getURL('/workflow-panel/workflow-window.html'));
 injector.get(StorageService).listenMessage();
 injector.get(DrillDownService).listenMessage();
 injector.get(ScraperService).listenMessage();
 injector.get(ISidePanelService).listenMessage();
-injector.get(WorkflowService).setWorkflowWindowPath(chrome.runtime.getURL('/workflow-panel/workflow-window.html'));
 
 workflowService.onWorkflowDone(async (ctx) => {
     const { workflow, url, rows } = ctx;
@@ -79,5 +77,13 @@ workflowService.onWorkflowDone(async (ctx) => {
 
 workflowService.onWorkflowDone((ctx) => {
     // You can do something after the workflow is done
+});
+
+chrome.runtime.onInstalled.addListener((detail) => {
+    if (detail.reason === 'install') {
+        chrome.tabs.create({ url: 'https://univer.ai/clipsheet' });
+
+        setTemplate(injector);
+    }
 });
 
