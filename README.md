@@ -6,6 +6,8 @@
 
 [Official Site](https://univer.ai/en-US/clip-sheet) | [Documentation](https://dream-num.github.io/univer-clipsheet/#/)
 
+If you want to directly experience **Clipsheet**, please click [Clipsheet Releases](https://github.com/dream-num/univer-clipsheet/releases) to get the latest version of **Clipsheet**.
+
 ## Key Features
 
 ### 1. Web Scraping
