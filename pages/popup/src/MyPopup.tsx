@@ -1,10 +1,10 @@
 import '@src/index.css';
-import { t } from '@univer-clipsheet-core/locale';
+import { isZhCN, t } from '@univer-clipsheet-core/locale';
 import type { SetStorageMessage } from '@univer-clipsheet-core/shared';
 import { ClipsheetMessageTypeEnum, closePopup, IframeViewTypeEnum, sendSetIframeViewMessage } from '@univer-clipsheet-core/shared';
 import { deleteTaskRecord, TableStorageKeyEnum, triggerRecordTypes } from '@univer-clipsheet-core/table';
 import type { DropdownMenuItem } from '@univer-clipsheet-core/ui';
-import { DropdownMenu, getWorkflowColumnsByTable, openWorkflowDialog, Popup, PopupViewService } from '@univer-clipsheet-core/ui';
+import { DropdownMenu, getWorkflowColumnsByTable, openWorkflowDialog, Popup, PopupViewService, Tooltip } from '@univer-clipsheet-core/ui';
 import '@univer-clipsheet-core/ui/dist/index.css';
 import { useEffect, useMemo } from 'react';
 import clsx from 'clsx';
@@ -13,6 +13,7 @@ import {
     // GiteeSvg,
     GithubSvg,
     LinkSvg,
+    WeChatSvg,
     // WeChatSvg,
 } from './icons';
 
@@ -26,6 +27,10 @@ enum ContactMenuKey {
     Github = 'github',
     Gitee = 'gitee',
     WeCom = 'we_com',
+}
+
+function navigateToGithub() {
+    chrome.tabs.create({ url: 'https://github.com/dream-num/univer-clipsheet' });
 }
 
 export function MyPopup() {
@@ -64,6 +69,8 @@ export function MyPopup() {
         return popupViewService;
     }, []);
 
+    const isZh = useMemo(() => isZhCN(), []);
+
     useEffect(() => {
         service.tableRecordMoreMenuRender$.next((record) => {
             const isTriggerRecord = triggerRecordTypes.includes(record.recordType);
@@ -84,30 +91,6 @@ export function MyPopup() {
     }, [service]);
 
     const contactMenus: DropdownMenuItem[] = useMemo(() => {
-        // const isZh = isZhCN();
-
-        // if (isZh) {
-        //     return [
-        //         {
-        //             key: ContactMenuKey.WeCom,
-        //             text: (
-        //                 <div className="flex items-center">
-        //                     <WeChatSvg />
-        //                     <span className="ml-1">微信</span>
-        //                 </div>
-        //             ),
-        //         },
-        //         {
-        //             key: ContactMenuKey.Gitee,
-        //             text: (
-        //                 <div className="flex items-center">
-        //                     <GiteeSvg />
-        //                     <span className="ml-1">Gitee</span>
-        //                 </div>
-        //             ),
-        //         },
-        //     ];
-        // } else {
         return [
             {
                 key: ContactMenuKey.Discord,
@@ -129,7 +112,6 @@ export function MyPopup() {
                 ),
             },
         ];
-        // }
     }, []);
 
     const handleContactMenuChange = (key: string) => {
@@ -139,28 +121,46 @@ export function MyPopup() {
                 break;
             }
             case ContactMenuKey.Github: {
-                chrome.tabs.create({ url: 'https://github.com/dream-num/univer-clipsheet' });
+                navigateToGithub();
                 break;
             }
-            // case ContactMenuKey.Gitee: {
-            //     break;
-            // }
-            // case ContactMenuKey.WeCom: {
-            //     break;
-            // }
         }
     };
+
+    const sideAffix = isZh
+        ? (
+            <div>
+                <div>
+                    <Tooltip
+                        white
+                        showArrow={false}
+                        placement="rightBottom"
+                        overlay={<img className="rounded-md w-[180px] h-[180px]" src={chrome.runtime.getURL('popup/qrcode.png')} />}
+                    >
+                        <button className="rounded-full p-3 hover:bg-gray-100">
+                            <WeChatSvg className="w-[18px] h-[18px]" />
+                        </button>
+                    </Tooltip>
+                </div>
+                <div>
+                    <button className="rounded-full p-3 hover:bg-gray-100" onClick={navigateToGithub}>
+                        <GithubSvg className="text-gray-900 w-[18px] h-[18px]" />
+                    </button>
+                </div>
+            </div>
+        )
+        : (
+            <DropdownMenu onChange={handleContactMenuChange} menus={contactMenus} placement="topLeft" trigger="hover">
+                <button className={clsx('rounded-full p-3 text-gray-600 hover:text-indigo-600 bg-gray-100  transition-colors hover:bg-indigo-100')}>
+                    <LinkSvg className="w-[18px] h-[18px]" />
+                </button>
+            </DropdownMenu>
+        );
 
     return (
         <Popup
             service={service}
-            sideAffix={(
-                <DropdownMenu onChange={handleContactMenuChange} menus={contactMenus} placement="topLeft" trigger="hover">
-                    <button className={clsx('rounded-full p-3 text-gray-600 hover:text-indigo-600 bg-gray-100  transition-colors hover:bg-indigo-100')}>
-                        <LinkSvg className="w-[18px] h-[18px]" />
-                    </button>
-                </DropdownMenu>
-            )}
+            sideAffix={sideAffix}
         />
     );
 }
