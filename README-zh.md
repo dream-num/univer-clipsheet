@@ -4,7 +4,7 @@
 
 [English](./README.md) | **简体中文**
 
-[Official Site](https://univer.ai/zh-CN/clip-sheet)
+[官方网站](https://univer.ai/zh-CN/clip-sheet) | [在线文档](https://dream-num.github.io/univer-clipsheet/#/)
 
 ## 核心功能
 
