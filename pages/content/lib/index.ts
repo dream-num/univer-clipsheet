@@ -6,11 +6,11 @@ import { startAjaxIntercept } from '@univer-clipsheet-core/ajax-intercept';
 import type { IGetTableRecordsParams, IPreviewSheetStorageValue, ITableRecordsResponse } from '@univer-clipsheet-core/table';
 import { ajaxJsonToTable, PreviewSheetFromEnum, TableDataSourceKeyEnum, TableStorageKeyEnum } from '@univer-clipsheet-core/table';
 
-startAjaxIntercept(chrome.runtime.getURL('ajax-interceptor/index.iife.js'), (data) => {
-    if (data) {
-        // console.log('Ajax data', data);
-        const sheets = ajaxJsonToTable([data]);
-        // console.log('Ajax sheets', sheets);
+startAjaxIntercept(chrome.runtime.getURL('ajax-interceptor/index.iife.js'), (res) => {
+    if (res) {
+        // console.log('AJAX response', data);
+        const sheets = ajaxJsonToTable([res]);
+        // console.log('AJAX sheets from response', sheets);
     }
 });
 
@@ -88,7 +88,6 @@ listenPingSignal(PingSignalKeyEnum.PopupShowed, () => {
     detectTablesService.tableElements$.next([]);
 });
 listenPingSignal(PingSignalKeyEnum.ScraperFormShowed, () => {
-    // console.log('ScraperFormShowed callback');
     chrome.runtime.sendMessage({
         type: ClipsheetMessageTypeEnum.GetStorage,
         payload: TableStorageKeyEnum.PreviewSheet,

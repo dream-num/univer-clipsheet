@@ -1,11 +1,11 @@
 import { t } from '@univer-clipsheet-core/locale';
-import { IframeViewTypeEnum, sendSetIframeViewMessage } from '@univer-clipsheet-core/shared';
+import { IframeViewTypeEnum, sendSetIframeViewMessage, throttle } from '@univer-clipsheet-core/shared';
 import type { IInitialSheet, ITableRecord } from '@univer-clipsheet-core/table';
 import { getCellValue, TableStorageKeyEnum } from '@univer-clipsheet-core/table';
 import { CloseGraySvg, InitialSheetView, linearGradientBackground, Link, useStorageValue, useSyncIframeRectEffect } from '@univer-clipsheet-core/ui';
 import clsx from 'clsx';
-import React, { useMemo } from 'react';
 import { saveAs } from 'file-saver';
+import React, { useEffect, useState } from 'react';
 
 export const TablePanel = () => {
     const [currentTableRecord] = useStorageValue<ITableRecord | null>(TableStorageKeyEnum.CurrentTableRecord, null);
@@ -35,7 +35,22 @@ export const TablePanel = () => {
         saveAs(blob, `${currentTableRecord?.title}.csv`);
     };
 
-    const tableScroll = useMemo(() => ({ x: 400, y: window.innerHeight - 214 }), []);
+    const [tableScroll, setTableScroll] = useState({ x: 400, y: window.innerHeight - 240 });
+
+    useEffect(() => {
+        const listener = throttle(200, () => {
+            setTableScroll((scroll) => {
+                scroll.y = window.innerHeight - 214;
+                return { ...scroll };
+            });
+        });
+
+        window.addEventListener('resize', listener);
+
+        return () => {
+            window.removeEventListener('resize', listener);
+        };
+    }, []);
 
     return (
         <div ref={containerRef} className="rounded-2xl p-5 bg-white">
@@ -78,7 +93,7 @@ export const TablePanel = () => {
                     <span className="text-[#274FEE]">{currentSheet?.rows.length ?? 0}</span>
                 </div>
 
-                <button className={clsx('py-1.5 px-3 text-white rounded-3xl', linearGradientBackground)} onClick={exportAsCSV}>Export as CSV</button>
+                <button className={clsx('py-1.5 px-3 text-white rounded-3xl', linearGradientBackground)} onClick={exportAsCSV}>{t('ExportAsWith', { text: 'CSV' })}</button>
             </footer>
         </div>
     );
