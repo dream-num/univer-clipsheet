@@ -14,7 +14,7 @@ The first step is to unzip the compressed file you just downloaded.
 
 ## 1.3 Open developer mode
 
-<img src="/assets/en-US/getting-started/chrome_extensions_developer_mode.png" style="width: 800px; height: 200px; object-fit: contain;" />
+<img src="./assets/en-US/getting-started/chrome_extensions_developer_mode.png" style="width: 800px; height: 200px; object-fit: contain;" />
 
 Locate the developer mode toggle control on the right side of the navigation bar and open it.
 
