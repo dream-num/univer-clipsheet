@@ -12,7 +12,7 @@
 
 一个 **工作流（workflow）** 可以绑定到一个数据源。如果没有定义数据源，工作流第一次执行后会自动创建并绑定一个新的数据源。
 
-<img src="../univer-clipsheet/assets/zh-CN/workflow/data_source_form.png" style="width: 400px; height: 300px; object-fit: contain;" />
+<img src="/assets/zh-CN/workflow/data_source_form.png" style="width: 400px; height: 300px; object-fit: contain;" />
 
 > **注意：** 当 **工作流（workflow）** 绑定到数据源时，数据源的列将设置为该 **工作流（workflow）** 并且无法修改。（因为一旦数据源创建，其表结构是不可更改的。）
 
@@ -20,7 +20,7 @@
 
 您可以自定义去重配置。
 
-<img src="../univer-clipsheet/assets/zh-CN/workflow/remove_duplicates_form.png" style="width: 400px; height: 300px; object-fit: contain;" />
+<img src="/assets/zh-CN/workflow/remove_duplicates_form.png" style="width: 400px; height: 300px; object-fit: contain;" />
 
 ## 6.2 与采集器结合
 
@@ -28,16 +28,16 @@
 
 您需要根据构成 **工作流（workflow）** 的采集器来定义工作流。例如，在以下配置中，我们将 **工作流（workflow）** 配置为包括 `Amazon Scraper` 和 `Google Maps Scraper`。
 
-<img src="../univer-clipsheet/assets/zh-CN/workflow/data_merge_form_scraper.png" style="width: 400px; height: 300px; object-fit: contain;" />
+<img src="/assets/zh-CN/workflow/data_merge_form_scraper.png" style="width: 400px; height: 300px; object-fit: contain;" />
 
 接下来，我们需要确定 **工作流（workflow）** 中的每一列与每个 **采集器（scraper）** 中的相应列如何映射。
 
-<img src="../univer-clipsheet/assets/zh-CN/workflow/data_merge_form_column.png" style="width: 400px; height: 300px; object-fit: contain;" />
+<img src="/assets/zh-CN/workflow/data_merge_form_column.png" style="width: 400px; height: 300px; object-fit: contain;" />
 
 ## 6.3 定时执行
 
 对于定时执行，我们提供了高度可定制的调度配置，允许您设置 **工作流（workflow）** 运行的具体时间。
 
-<img src="../univer-clipsheet/assets/zh-CN/workflow/timer_form.png" style="width: 400px; height: 300px; object-fit: contain;" />
+<img src="/assets/zh-CN/workflow/timer_form.png" style="width: 400px; height: 300px; object-fit: contain;" />
 
 工作流的定时执行是一个强大的功能，帮助您满足网页采集的需求。
