@@ -6,6 +6,8 @@
 
 [官方网站](https://univer.ai/zh-CN/clip-sheet) | [在线文档](https://dream-num.github.io/univer-clipsheet/#/)
 
+如果你想直接体验 **Clipsheet** 插件, 请点击[Clipsheet releases](https://github.com/dream-num/univer-clipsheet/releases)去获取最新版本的 **Clipsheet** 安装包
+
 ## 核心功能
 
 ### 1. 网页采集
