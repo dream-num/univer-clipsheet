@@ -14,7 +14,7 @@
 
 ## 1.3 打开开发者模式
 
-<img src="/assets/en-US/getting-started/chrome_extensions_developer_mode.png" style="width: 800px; height: 200px; object-fit: contain;" />
+<img src="./assets/en-US/getting-started/chrome_extensions_developer_mode.png" style="width: 800px; height: 200px; object-fit: contain;" />
 
 在导航栏右侧找到开发者模式切换按钮并打开它。
 
