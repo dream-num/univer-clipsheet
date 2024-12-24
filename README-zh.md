@@ -145,3 +145,6 @@
 
 - 在 GitHub 上提交问题
 - 发送电子邮件至 **[developer@univer.ai](mailto:developer@univer.ai)**
+- 加入微信交流群
+
+<img style="width: 160px; height: 160px;" src="./pages/popup/public/qrcode.png" />

@@ -1,6 +1,6 @@
 
 import { DrillDownService, IScraperDataSource, LocaleScraperDataSource, ScraperService } from '@univer-clipsheet-core/scraper';
-import { getStorage, ISidePanelService, setAndPushStorage, SidePanelService, StorageService, WindowService } from '@univer-clipsheet-core/shared';
+import { getStorage, ISidePanelService, ReportPrintService, setAndPushStorage, SidePanelService, StorageService, WindowService } from '@univer-clipsheet-core/shared';
 import type { IInitialSheet } from '@univer-clipsheet-core/table';
 import { createEmptyInitialSheet, ITableDataSource, LocalTableDataSource, TableRecordTypeEnum, TableService, TableStorageKeyEnum } from '@univer-clipsheet-core/table';
 import { IWorkflowDataSource, LocaleWorkflowDataSource, WorkflowService } from '@univer-clipsheet-core/workflow';
@@ -10,6 +10,7 @@ import { filterRowsByRemoveDuplicateRule } from './helper';
 import { setTemplate } from './set-templates';
 
 const injector = new Injector([
+    [ReportPrintService],
     [TableService],
     [StorageService],
     [ScraperService],
@@ -26,14 +27,12 @@ const tableService = injector.get(TableService);
 const workflowService = injector.get(WorkflowService);
 const windowService = injector.get(WindowService);
 
-tableService.listenMessage();
-workflowService.listenMessage();
-windowService.listenMessage();
 windowService.setWindowTemplatePath(chrome.runtime.getURL('/workflow-panel/workflow-window.html'));
-injector.get(StorageService).listenMessage();
-injector.get(DrillDownService).listenMessage();
-injector.get(ScraperService).listenMessage();
-injector.get(ISidePanelService).listenMessage();
+injector.get(StorageService);
+injector.get(DrillDownService);
+injector.get(ScraperService);
+injector.get(ISidePanelService);
+injector.get(ReportPrintService);
 
 workflowService.onWorkflowDone(async (ctx) => {
     const { workflow, url, rows } = ctx;
