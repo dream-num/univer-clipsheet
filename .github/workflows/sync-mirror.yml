@@ -1,0 +1,20 @@
+name: 🔮 Sync Mirror
+
+on:
+    push:
+        branches:
+            - main
+            - dev
+
+jobs:
+    sync:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Sync Gitee
+              uses: jikkai/sync-gitee@main
+              with:
+                  repository: dream-num/univer
+                  username: ${{ secrets.GITEE_USERNAME }}
+                  password: ${{ secrets.GITEE_PASSWORD }}
+                  tags: true
+                  branches: main dev
