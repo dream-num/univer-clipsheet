@@ -13,7 +13,7 @@ jobs:
             - name: Sync Gitee
               uses: jikkai/sync-gitee@main
               with:
-                  repository: dream-num/univer
+                  repository: dream-num/univer-clipsheet
                   username: ${{ secrets.GITEE_USERNAME }}
                   password: ${{ secrets.GITEE_PASSWORD }}
                   tags: true
