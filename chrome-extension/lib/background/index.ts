@@ -80,7 +80,7 @@ workflowService.onWorkflowDone((ctx) => {
 
 chrome.runtime.onInstalled.addListener((detail) => {
     if (detail.reason === 'install') {
-        chrome.tabs.create({ url: 'https://univer.ai/clipsheet' });
+        chrome.tabs.create({ url: 'https://univer.ai/clip-sheet' });
 
         setTemplate(injector);
     }
