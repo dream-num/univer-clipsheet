@@ -2,17 +2,17 @@ import { Injector } from '@wendellhu/redi';
 import type { IMessage, PushStorageMessage, SetStorageMessage } from '@univer-clipsheet-core/shared';
 import { ClipsheetMessageTypeEnum, IframeViewTypeEnum, listenPingSignal, PingSignalKeyEnum, promisifyMessage, requestDataSource, sendSetIframeViewMessage } from '@univer-clipsheet-core/shared';
 import { ClientController, ClientViewService, CoverService, DetectTablesService, ElementInspectService, IframeViewController, RemountObserver, ScraperClientService, TableScrapingShadowComponent } from '@univer-clipsheet-core/ui';
-import { startAjaxIntercept } from '@univer-clipsheet-core/ajax-intercept';
 import type { IGetTableRecordsParams, IPreviewSheetStorageValue, ITableRecordsResponse } from '@univer-clipsheet-core/table';
-import { ajaxJsonToTable, PreviewSheetFromEnum, TableDataSourceKeyEnum, TableStorageKeyEnum } from '@univer-clipsheet-core/table';
+import { PreviewSheetFromEnum, TableDataSourceKeyEnum, TableStorageKeyEnum } from '@univer-clipsheet-core/table';
 
-startAjaxIntercept(chrome.runtime.getURL('ajax-interceptor/index.iife.js'), (res) => {
-    if (res) {
-        // console.log('AJAX response', data);
-        const sheets = ajaxJsonToTable([res]);
-        // console.log('AJAX sheets from response', sheets);
-    }
-});
+// You can use startAjaxIntercept to intercept AJAX requests
+// startAjaxIntercept(chrome.runtime.getURL('ajax-interceptor/index.iife.js'), (res) => {
+//     if (res) {
+//         console.log('AJAX response', data);
+//         const sheets = ajaxJsonToTable([res]);
+//         console.log('AJAX sheets from response', sheets);
+//     }
+// });
 
 window.addEventListener('DOMContentLoaded', () => {
     const msg: IMessage<ClipsheetMessageTypeEnum.DomContentLoaded> = {
