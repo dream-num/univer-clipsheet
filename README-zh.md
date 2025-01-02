@@ -6,7 +6,10 @@
 
 [官方网站](https://univer.ai/zh-CN/clip-sheet) | [在线文档](https://dream-num.github.io/univer-clipsheet/#/)
 
-如果你想直接体验 **Clipsheet** 插件, 请点击[Clipsheet releases](https://github.com/dream-num/univer-clipsheet/releases)去获取最新版本的 **Clipsheet** 安装包
+你可以通过一下2种方式直接地体验 **Clipsheet** 插件
+
+1. 跳转 Chrome 商店安装 - [Univer Clipsheet](https://chromewebstore.google.com/detail/univer-clipsheet-an-ai-dr/mbcpbomfebacllmjjefeifejbbibbope)
+2. 访问 [Clipsheet Releases](https://github.com/dream-num/univer-clipsheet/releases) 去获取最新版本的 **Clipsheet** 压缩安装包，并按照 [手动安装指南](https://dream-num.github.io/univer-clipsheet/#/zh-CN/getting-started) 进行操作.
 
 ## 核心功能
 

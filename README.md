@@ -6,7 +6,10 @@
 
 [Official Site](https://univer.ai/en-US/clip-sheet) | [Documentation](https://dream-num.github.io/univer-clipsheet/#/)
 
-If you want to directly experience **Clipsheet**, please click [Clipsheet Releases](https://github.com/dream-num/univer-clipsheet/releases) to get the latest version of **Clipsheet**.
+If you want to directly experience **Clipsheet**, you can install in two ways
+
+1. Install from the Chrome Web Store - [Univer Clipsheet](https://chromewebstore.google.com/detail/univer-clipsheet-an-ai-dr/mbcpbomfebacllmjjefeifejbbibbope)
+2. Visit the [Clipsheet Releases](https://github.com/dream-num/univer-clipsheet/releases) get get the latest version of **Clipsheet**. Follow the [Manual Installation Guide](https://dream-num.github.io/univer-clipsheet/#/en-US/getting-started) to set it up.
 
 ## Key Features
 
